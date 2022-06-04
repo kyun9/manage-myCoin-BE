@@ -2,31 +2,31 @@ package com.mng.mycoin.domain;
 
 public class User {
 
-	private Long userId;
-	private String userName;
+	private Long userSeq;
+	private String userId;
 	
-	public User(Long userId, String userName) {
+	public User(Long userSeq, String userId) {
 		super();
+		this.userSeq = userSeq;
 		this.userId = userId;
-		this.userName = userName;
 	}
 	
-	public Long getUserId() {
+	public Long getUserSeq() {
+		return userSeq;
+	}
+	public void setUserSeq(Long userSeq) {
+		this.userSeq = userSeq;
+	}
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(Long userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userName=" + userName + "]";
+		return "User [userSeq=" + userSeq + ", userId=" + userId + "]";
 	}
 
 }

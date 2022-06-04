@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Repository;
+
 import com.mng.mycoin.domain.User;
 import com.mng.mycoin.repository.UserRepository;
 
+@Repository
 public class IUserRepository implements UserRepository{
 	// DB연결전 임시 데이터 ====================================
 	public static List<User> users;
@@ -23,14 +26,14 @@ public class IUserRepository implements UserRepository{
 	// ====================================================
 
 	@Override
-	public List<User> getAllUsers(){
+	public List<User> findAllUsers(){
 		System.out.println("사용자 전체보기");
 		return users;
 	}
 	
 	@Override
-	public Optional<User> getUserByUserId(Long userId) {
-		System.out.println("사용자 상세보기");
+	public Optional<User> findByUserId(String userId) {
+		System.out.println("사용자 아이디 상세보기");
 		
 		return Optional.ofNullable(users.stream()
 									.filter(user -> user.getUserId() == userId)
@@ -39,11 +42,21 @@ public class IUserRepository implements UserRepository{
 	}
 	
 	@Override
-	public Optional<User> insertUser(User user) {
+	public Optional<User> findByUserSeq(Long userSeq) {
+		System.out.println("사용자 시퀀스 상세보기");
+		
+		return Optional.ofNullable(users.stream()
+				.filter(user -> user.getUserSeq() == userSeq)
+				.findAny()
+				.orElse(new User(0L, "no User")));
+	}
+	
+	@Override
+	public User saveUser(User user) {
 		System.out.println("사용자 등록");
 		
 		users.add(user);
-		return Optional.ofNullable(user);
+		return user;
 	}
 	
 	@Override
@@ -54,14 +67,17 @@ public class IUserRepository implements UserRepository{
 						.filter(item -> item.getUserId() == user.getUserId())
 						.findAny()
 						.orElse(new User(0L, "no User"))
-						.setUserName(user.getUserName());
+						.setUserId(user.getUserId());
 	}
 	
 	@Override
-	public void deleteUser(Long userId) {
+	public void deleteUser(Long userSeq) {
 		System.out.println("사용자 삭제");
 		
-		users.removeIf(user -> user.getUserId() == userId);
+		users.removeIf(user -> user.getUserSeq() == userSeq);
 	}
+
+
+
 	
 }

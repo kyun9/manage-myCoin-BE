@@ -9,7 +9,7 @@ import com.mng.mycoin.domain.User;
 import com.mng.mycoin.service.UserService;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/aa")
 public class HomeController {
 	private final UserService userService;
 	
