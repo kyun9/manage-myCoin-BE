@@ -26,6 +26,7 @@ public class HomeController {
 	public Map<String, Object> generateToken(@RequestParam(value = "subject") String subject) {
 		String token = securityService.createToken(subject, (2 * 1000 * 60));
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
+		map.put("usrId", subject);
 		map.put("result", token); 
 		return map;
 	}

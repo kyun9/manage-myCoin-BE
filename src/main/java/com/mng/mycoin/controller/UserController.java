@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mng.mycoin.annotation.TokenRequired;
 import com.mng.mycoin.domain.User;
 import com.mng.mycoin.service.UserService;
 
@@ -21,7 +22,7 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	
+	@TokenRequired
 	@PostMapping("/getUsers")
 	public List<User> getAllUsers() {
 		return userService.findUsers();

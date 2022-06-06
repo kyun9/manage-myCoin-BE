@@ -18,7 +18,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Service
 public class ISecurityService implements SecurityService {
 
-	private static final String secretKey = "4C8kum4LxyKWYLM78sKdXrzbBjDCFyfX";
+	public static final String secretKey = "4C8kum4LxyKWYLM78sKdXrzbBjDCFyfX";
 
 	@Override
 	public String createToken(String subject, long ttlMillis) {
