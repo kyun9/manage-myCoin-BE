@@ -45,10 +45,10 @@ public class IUserRepository implements UserRepository{
 	public Optional<User> findByUserSeq(Long userSeq) {
 		System.out.println("사용자 시퀀스 상세보기");
 		
-		return Optional.ofNullable(users.stream()
+		System.out.println(userSeq);
+		return users.stream()
 				.filter(user -> user.getUserSeq() == userSeq)
-				.findAny()
-				.orElse(new User(0L, "no User")));
+				.findAny();
 	}
 	
 	@Override
